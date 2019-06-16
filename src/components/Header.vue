@@ -2,18 +2,37 @@
     <div class="header">
         <router-link class="header-icon"
                      to="/">
+            <i class="el-icon-s-home"></i>xtime
         </router-link>
-        <div class="header-nav">
-            <HeaderNav />
+        <div class="header-menu">
+            <Menu />
+        </div>
+        <div class="header-user">
+            <el-dropdown v-if="isLogin">
+                <span class="el-dropdown-link">
+                    <i class="el-icon-s-custom"></i>
+                    管理员
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>注销</el-dropdown-item>
+                    <el-dropdown-item>修改密码</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <el-button v-else type="text" class="btn-login"><router-link to="/login">登录</router-link></el-button>
         </div>
     </div>
 </template>
 <script>
-import HeaderNav from "./HeaderNav"
+import Menu from './Menu'
 export default {
     name: 'Header',
     components: {
-        HeaderNav
+        Menu
+    },
+    data() {
+        return {
+            isLogin: false
+        }
     }
 }
 </script>
@@ -21,18 +40,33 @@ export default {
 .header {
     height: 60px;
     padding: 0 30px;
-    background-color: $primary-color;
+    // background: linear-gradient(#099cec, #418AF1);
+    background-color: #099cec;
     display: flex;
     flex-direction: center;
     align-items: center;
+    position: relative;
     .header-icon {
         display: inline-block;
-        background: url('../assets/logo.png') no-repeat center center;
-        width: 136px;
-        height: 42px;
+        font-size: 30px;
+        font-weight: bolder;
+        color: #fff;
     }
-    .header-nav{
-        margin-left: 100px;
+    .header-menu{
+        position: absolute;
+        left: 200px;
+    }
+    .header-user {
+        position: absolute;
+        right: 30px;
+    }
+    .el-dropdown-link {
+        cursor: pointer;
+        color: #fff;
+        font-size: 16px;
+    }
+    .btn-login{
+        color: #fff;
     }
 }
 </style>

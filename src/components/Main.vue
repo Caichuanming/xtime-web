@@ -4,31 +4,60 @@
             <Header />
         </el-header>
         <el-container>
-            <el-aside width="200px">
-                <Nav />
-            </el-aside>
-            <el-main>
-                <router-view class="view" ref=""></router-view>
-            </el-main>
+            <p v-if="welcomeShow"
+               class="wel"><i class="el-icon-s-home"></i>Welcome to xtime</p>
+            <el-container v-else>
+                <el-aside width="200px"
+                          class="sidebar">
+                    <Sidebar />
+                </el-aside>
+                <el-main>
+                    <Breadcrumb />
+                    <router-view></router-view>
+                </el-main>
+            </el-container>
         </el-container>
     </el-container>
 </template>
 
 <script>
 import Header from './Header.vue'
-import Nav from './Nav.vue'
+import Sidebar from './Sidebar'
+import Breadcrumb from './Breadcrumb'
 
 export default {
-    name: 'Home',
+    name: 'Main',
     components: {
         Header,
-        Nav
+        Sidebar,
+        Breadcrumb
+    },
+    computed: {
+        welcomeShow() {
+            return this.$route.path === '/' ? true : false
+        },
+    },
+    methods: {
+    },
+    mounted() {
     }
 }
 </script>
 <style lang="scss" scoped>
-.el-header{
+.el-header {
     padding: 0;
+}
+.sidebar {
+    background-color: #EFF2F7;
+    margin-bottom: -10000px;
+    padding-bottom: 10000px;
+}
+.wel {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 100px;
 }
 </style>
 

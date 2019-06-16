@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h1>Hello World</h1>
+        <h1>权限管理</h1>
     </div>
 </template>
 <script>
 export default {
-    name: "Home"
+    name: "permission"
 }
 </script>

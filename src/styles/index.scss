@@ -9,8 +9,12 @@ $link-active-color : shade($link-color, 5%);
     margin: 0;
     padding: 0;
     border: none;
+    font-family: "Open Sans,sans-serif"
 }
 a{
     text-decoration: none;
     color: #fff;
+}
+body{
+    min-width: 1200px;
 }
