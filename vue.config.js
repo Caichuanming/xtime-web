@@ -14,7 +14,7 @@ module.exports = {
         port: 9000,
         proxy: {
             '/api': {
-                target: 'http://127.0.0.1:8083/',
+                target: 'http://192.168.148.98:8680/',
                 pathRewrite: {
                     '^/api': ''
                 },

@@ -23,3 +23,11 @@ export const checkSysCodeSubmit = (data) => {
         params: data
     })
 }
+
+export const listSubmit = (data) => {
+    return api.request({
+        url: `/api/system/list`,
+        method: 'post',
+        params: data
+    })
+}

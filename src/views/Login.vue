@@ -12,7 +12,7 @@
                           placeholder="密码"
                           show-password></el-input>
                 <el-button type="primary"
-                           @click="loginHandler">登录</el-button>
+                           @click.enter.exact="loginHandler">登录</el-button>
             </div>
         </div>
     </div>

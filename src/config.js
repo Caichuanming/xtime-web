@@ -1,7 +1,7 @@
 import env from "../build/env"
 function commonBaseUrl() {
     env === "development" ?
-        "http: //127.0.0.1:8083":
-        "http: //127.0.0.1:8083"
+        "http: //192.168.148.98:8680":
+        "http: //192.168.148.98:8680"
 }
 export const commonBase = commonBaseUrl()

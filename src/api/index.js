@@ -35,6 +35,8 @@ const checkHttpResponse = (response) => {
     if (response && (response.status === 200 || response.status === 304)) {
         return response
     } else if (parseInt(response.status) === 401) {
+        localStorage.clear()
+        Cookie.set('access_token', '')
         router.replace({
             path: '/login'
         })

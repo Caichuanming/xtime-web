@@ -87,6 +87,7 @@ import * as Role from "@/api/components/portal/role.js";
 import * as Perm from "@/api/components/portal/perm.js";
 import Qs from "qs";
 import axios from "axios";
+import Cookie from 'js-cookie'
 export default {
     name: "user",
     data() {
@@ -193,7 +194,14 @@ export default {
                             Qs.stringify(
                                 { permCodes: permCodes },
                                 { arrayFormat: "repeat" }
-                            )
+                            ),
+                        {
+                            headers: {
+                                'X-Auth-Token': Cookie.get('access_token'),
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                            }
+                        }
                     )
                     .then(res => {
                         if (res.data === true) {
