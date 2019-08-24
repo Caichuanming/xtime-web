@@ -1,16 +1,21 @@
 # xtime-web
 
-## Project setup
+## 安装依赖
 ```
 yarn install || yarn i
 ```
 
-### Compiles and minifies for production
+### 打包
 ```
 yarn build
 ```
 
-### Run your dev
+### 本地开发启动
 ```
 yarn start
+```
+
+### 添加新包
+```
+yarn add [包名]
 ```

@@ -14,19 +14,20 @@
                           :key="cIndex"
                           :index="cItem.index"
                           :code="item.code">
-                <router-link @click.native="getSiderbarParams(cItem.router)"
+                <router-link @click.native="getSidebarParams(cItem.router)"
                              :to="cItem.router">{{cItem.title}}</router-link>
             </el-menu-item>
         </el-submenu>
     </el-menu>
 </template>
 <script>
-import { mapMutations } from 'vuex'
-import axios from 'axios'
+import { mapState, mapMutations } from 'vuex'
+import * as Common from '@/api/common'
+
 export default {
     watch: {
         $route() {
-            // this.getSiderbarParams(this.$router.history.current.path)
+            // this.getSidebarParams(this.$router.history.current.path)
         }
     },
     data() {
@@ -35,46 +36,52 @@ export default {
             menuActive: ''
         }
     },
+    computed: {
+        ...mapState('global', ['userCode'])
+    },
     methods: {
         ...mapMutations('global', [
             'changeSysCode',
             'changeMenuCode',
             'changeSysAndFirst',
-            'changeSidebarList'
+            'changeSidebarList',
+            'changeBreadcrumbList'
         ]),
-        getMenuData() {
-            axios.get('/api/getHeaderNav').then(res => {
-                this.menuList = res.data
-                const router = this.$router.history.current.path
-                for (const item of this.menuList) {
-                    if (router === item.router) {
-                        this.menuActive = item.index
-                    } else {
-                        for (const cItem of item.children) {
-                            if (router === cItem.router) {
-                                this.menuActive = cItem.index
-                            }
+        async getMenuData() {
+            console.log(this.userCode);
+            const res = await Common.getMenuListData({userCode: this.userCode})
+            this.menuList = res.data
+            const path = this.$router.history.current.path
+            const pathArr = path.slice(1).split('/')
+            const router = "/" + pathArr[0] + '/' + pathArr[1]
+            for (const item of this.menuList) {
+                if (router === item.router) {
+                    this.menuActive = item.index
+                } else {
+                    for (const cItem of item.children) {
+                        if (router === cItem.router) {
+                            this.menuActive = cItem.index
                         }
                     }
                 }
-            })
+            }
         },
-        getSiderbarParams(path) {
+        getSidebarParams(path) {
             const pathArr = path.slice(1).split('/')
             if (pathArr.length === 2) {
                 this.changeSysCode(pathArr[0])
                 this.changeMenuCode(pathArr[1])
-                this.getSiderbarData(pathArr[0], pathArr[1])
+                this.getSidebarData(pathArr[0], pathArr[1])
+                this.changeBreadcrumbList('')
             }
         },
-        getSiderbarData(systemCode, menuCode) {
-            axios
-                .get(
-                    `/api/getSidebar?sysCode=${systemCode}&menuCode=${menuCode}`
-                )
-                .then(res => {
-                    this.changeSidebarList(res.data)
-                })
+        async getSidebarData(systemCode, menuCode) {
+            const res = await Common.getSidebarSubmit({
+                sysCode: systemCode,
+                menuCode: menuCode,
+                userCode: this.userCode
+            })
+            this.changeSidebarList(res.data)
         }
     },
     created() {
@@ -83,7 +90,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.el-submenu__title i{
-    color: red!important;
+.el-submenu__title i {
+    color: red !important;
 }
 </style>

@@ -1,7 +1,10 @@
+import Password from '@/views/portal/Password'
+import UserData from '@/views/portal/UserData'
+
 export default [{
         path: "password",
         name: "修改密码",
-        component: () => import( /* webpackChunkName: "personInfo" */ '@/views/portal/Password'),
+        component: Password,
         meta: {
             title: "breadcrumb",
             breadcrumb: [
@@ -20,7 +23,7 @@ export default [{
     {
         path: "data",
         name: "个人信息",
-        component: () => import( /* webpackChunkName: "personInfo" */ '@/views/portal/UserData'),
+        component: UserData,
         meta: {
             title: "breadcrumb",
             breadcrumb: [

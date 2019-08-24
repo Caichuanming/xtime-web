@@ -1,91 +1,43 @@
+import System from '@/views/portal/System'
+import User from '@/views/portal/User'
+import Role from '@/views/portal/Role'
+import Menu from '@/views/portal/Menu'
+import Permission from '@/views/portal/Permission'
+
 export default [{
-        path: "system/list",
+        path: "system",
         name: "系统列表",
-        component: () => import( /* webpackChunkName: "baseInfo" */ '@/views/portal/System'),
+        component: System,
         meta: {
             title: "breadcrumb",
-            breadcrumb: [
-                {
-                    name: "平台系统",
-                },
-                {
-                    name: "基础信息",
-                },
-                {
-                    name: "系统管理",
-                },
-                {
-                    name: "系统列表",
-                }
-            ]
         }
     },
     {
         path: "user",
-        component: () => import( /* webpackChunkName: "baseInfo" */ '@/views/portal/User'),
+        component: User,
         meta: {
             title: "breadcrumb",
-            breadcrumb: [{
-                    name: "平台系统",
-                },
-                {
-                    name: "基础信息",
-                },
-                {
-                    name: "用户管理",
-                }
-            ]
         }
     },
     {
         path: "role",
-        component: () => import( /* webpackChunkName: "baseInfo" */ '@/views/portal/Role'),
+        component: Role,
         meta: {
             title: "breadcrumb",
-            breadcrumb: [{
-                    name: "平台系统",
-                },
-                {
-                    name: "基础信息",
-                },
-                {
-                    name: "角色管理",
-                }
-            ]
         }
     },
     {
         path: "menu",
-        component: () => import( /* webpackChunkName: "baseInfo" */ '@/views/portal/Menu'),
+        component: Menu,
         meta: {
             title: "breadcrumb",
-            breadcrumb: [{
-                    name: "平台系统",
-                },
-                {
-                    name: "基础信息",
-                },
-                {
-                    name: "菜单管理",
-                }
-            ]
         }
     },
     {
         path: "permission",
-        component: () => import( /* webpackChunkName: "baseInfo" */ '@/views/portal/Permission'),
+        component: Permission,
         meta: {
             title: "breadcrumb",
-            breadcrumb: [{
-                    name: "平台系统",
-                },
-                {
-                    name: "基础信息",
-                },
-                {
-                    name: "权限管理",
-                }
-            ]
         }
     }
 ]

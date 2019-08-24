@@ -12,7 +12,7 @@ export default [
         component: Home
     },
     {
-        path: "/member/manage/list",
+        path: "/member/point/getRule",
         component: Member
     },
     {
